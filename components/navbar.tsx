@@ -154,32 +154,6 @@ export function Navbar() {
           </div>
         </div>
       )}
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="border-t border-border bg-background md:hidden">
-          <div className="container mx-auto flex flex-col gap-4 p-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="flex flex-col gap-2 pt-2">
-              <Button variant="outline" asChild className="w-full bg-transparent">
-                <Link href="/auth/login">Sign In</Link>
-              </Button>
-              <Button asChild className="w-full">
-                <Link href="/auth/signup">Get Started</Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      )}
     </nav>
   )
 }

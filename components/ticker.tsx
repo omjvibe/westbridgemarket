@@ -22,13 +22,13 @@ export function Ticker() {
   ])
 
   return (
-    <div className="w-full overflow-hidden border-b border-white/10 bg-[#080b11]">
+    <div className="w-full overflow-hidden border-b border-gray-200 dark:border-white/10 bg-white dark:bg-[#080b11] transition-colors">
       <div className="flex animate-ticker gap-8 py-2.5 font-mono text-xs">
         {[...tickerData, ...tickerData].map((item, index) => (
-          <div key={`${item.symbol}-${index}`} className="flex items-center gap-2 whitespace-nowrap px-4 border-r border-white/5">
-            <span className="font-semibold text-gray-200">{item.symbol}</span>
-            <span className="text-gray-400">{item.price}</span>
-            <span className={`text-[11px] font-bold ${item.change >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+          <div key={`${item.symbol}-${index}`} className="flex items-center gap-2 whitespace-nowrap px-4 border-r border-gray-100 dark:border-white/5">
+            <span className="font-semibold text-gray-900 dark:text-gray-200">{item.symbol}</span>
+            <span className="text-gray-500 dark:text-gray-400">{item.price}</span>
+            <span className={`text-[11px] font-bold ${item.change >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-rose-600 dark:text-rose-400"}`}>
               {item.changePercent}
             </span>
           </div>
