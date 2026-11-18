@@ -22,13 +22,13 @@ export function Ticker() {
   ])
 
   return (
-    <div className="w-full overflow-hidden border-b border-t border-border bg-card/50 backdrop-blur-sm">
-      <div className="flex animate-ticker gap-8 py-2">
+    <div className="w-full overflow-hidden border-b border-white/10 bg-[#080b11]">
+      <div className="flex animate-ticker gap-8 py-2.5 font-mono text-xs">
         {[...tickerData, ...tickerData].map((item, index) => (
-          <div key={`${item.symbol}-${index}`} className="flex items-center gap-2 whitespace-nowrap px-4">
-            <span className="font-medium text-foreground">{item.symbol}</span>
-            <span className="text-sm text-muted-foreground">{item.price}</span>
-            <span className={`text-sm font-medium ${item.change >= 0 ? "text-accent" : "text-destructive"}`}>
+          <div key={`${item.symbol}-${index}`} className="flex items-center gap-2 whitespace-nowrap px-4 border-r border-white/5">
+            <span className="font-semibold text-gray-200">{item.symbol}</span>
+            <span className="text-gray-400">{item.price}</span>
+            <span className={`text-[11px] font-bold ${item.change >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
               {item.changePercent}
             </span>
           </div>

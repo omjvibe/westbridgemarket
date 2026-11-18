@@ -5,20 +5,19 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full border-t border-border bg-card">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="w-full border-t border-white/10 bg-[#080b11] text-gray-300">
+      <div className="container mx-auto px-4 py-16">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center bg-primary">
-                <span className="font-mono text-lg font-bold text-primary-foreground">WM</span>
+            <div className="flex items-center gap-3">
+              <div className="flex h-9 w-9 items-center justify-center bg-[#f04e23] text-white font-black text-lg tracking-tighter shrink-0">
+                W.
               </div>
-              <span className="text-lg font-bold">Westbridge Market</span>
+              <span className="text-lg font-bold text-white tracking-tight">Westbridge Market</span>
             </div>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Your trusted partner in global investment and trading. Access institutional-grade tools and grow your
-              wealth with confidence.
+            <p className="text-xs leading-relaxed text-gray-400">
+              Your trusted partner in global investment and institutional trading. Access elite tools, copy experts, and grow your wealth with confidence.
             </p>
             <div className="flex gap-4">
               <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
