@@ -1,0 +1,157 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { createClient } from "@/lib/supabase/client"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Shield, ArrowLeft } from "lucide-react"
+import HCaptcha from "@hcaptcha/react-hcaptcha"
+
+export default function AdminLoginPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const router = useRouter()
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!captchaToken) {
+      setError("Please complete the hCaptcha")
+      return
+    }
+
+    const supabase = createClient()
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+        options: {
+          captchaToken,
+        },
+      })
+      if (error) throw error
+
+      // Check if user is admin
+      const { data: adminUser } = await supabase.from("admin_users").select("id").eq("id", data.user.id).single()
+
+      if (!adminUser) {
+        await supabase.auth.signOut()
+        throw new Error("Access denied. Admin credentials required.")
+      }
+
+      router.push("/admin")
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "An error occurred")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <div className="min-h-screen flex">
+      {/* Left Side - Image (hidden on mobile) */}
+      <div className="hidden lg:flex lg:w-1/2 relative">
+        <img
+          src="/image/pexels-michael-steinberg-95604-318820.jpg"
+          alt="Admin"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/50 to-transparent" />
+        <div className="relative z-10 flex flex-col justify-center p-12">
+          <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center mb-6">
+            <Shield className="h-8 w-8 text-primary" />
+          </div>
+          <h1 className="text-4xl font-bold text-foreground mb-4">Admin Portal</h1>
+          <p className="text-lg text-muted-foreground max-w-md">
+            Secure access to the Westbridge Market administration dashboard. Manage users, transactions, and system settings.
+          </p>
+        </div>
+      </div>
+
+      {/* Right Side - Form */}
+      <div className="w-full lg:w-1/2 flex flex-col relative">
+        {/* Mobile background blur */}
+        <div className="absolute inset-0 lg:hidden -z-10">
+          <img
+            src="/image/pexels-michael-steinberg-95604-318820.jpg"
+            alt="Background"
+            className="h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-background/95 backdrop-blur-sm" />
+        </div>
+
+        <div className="flex-1 flex flex-col items-center justify-center p-4 sm:p-8">
+          <div className="w-full max-w-md">
+            <Link
+              href="/"
+              className="mb-8 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Home
+            </Link>
+
+            <Card className="shadow-xl">
+              <CardHeader className="space-y-1">
+                <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                  <Shield className="h-6 w-6 text-primary" />
+                </div>
+                <CardTitle className="text-center text-2xl font-bold">Admin Login</CardTitle>
+                <CardDescription className="text-center">Access the administration panel</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleLogin} className="space-y-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="email">Admin Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      placeholder="admin@westbridgemarket.app"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="password">Password</Label>
+                    <Input
+                      id="password"
+                      type="password"
+                      placeholder="Enter admin password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="flex justify-center my-4">
+                    <HCaptcha
+                      sitekey={process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY!}
+                      onVerify={(token) => setCaptchaToken(token)}
+                      onExpire={() => setCaptchaToken(null)}
+                      theme="dark"
+                    />
+                  </div>
+                  {error && <p className="text-sm text-destructive">{error}</p>}
+                  <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? "Signing in..." : "Sign In as Admin"}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
