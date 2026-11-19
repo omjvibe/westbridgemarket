@@ -96,9 +96,7 @@ export default function HomePage() {
           {/* Section 01 Crosshair Marker */}
           <ScrollReveal animation="slide-up" delay={50} duration={600}>
             <div className="relative inline-flex items-center mb-6">
-              <span className="font-mono text-3xl sm:text-4xl md:text-5xl font-light text-gray-950 dark:text-white tracking-widest relative z-10 px-2 bg-white/60 dark:bg-black/40 backdrop-blur-none">
-                01
-              </span>
+
               <div className="absolute inset-y-1/2 -left-4 -right-4 h-[1px] bg-gray-400 dark:bg-white/40 z-0" />
             </div>
           </ScrollReveal>
@@ -294,8 +292,8 @@ export default function HomePage() {
                 <ScrollReveal key={index} animation="slide-up" delay={index * 100}>
                   <div
                     className={`relative flex flex-col justify-between p-6 border transition-all ${isFeatured
-                        ? "border-[#f04e23] bg-orange-50/30 dark:bg-[#121825]"
-                        : "border-gray-200 bg-white hover:border-gray-400 dark:border-white/10 dark:bg-[#0e131d] dark:hover:border-white/30"
+                      ? "border-[#f04e23] bg-orange-50/30 dark:bg-[#121825]"
+                      : "border-gray-200 bg-white hover:border-gray-400 dark:border-white/10 dark:bg-[#0e131d] dark:hover:border-white/30"
                       }`}
                   >
                     {isFeatured && (
@@ -353,8 +351,8 @@ export default function HomePage() {
                     <button
                       type="button"
                       className={`w-full py-3 text-xs font-mono uppercase tracking-wider transition-colors ${isFeatured
-                          ? "bg-[#f04e23] hover:bg-[#d84018] text-white font-bold"
-                          : "border border-gray-300 hover:border-gray-900 text-gray-900 hover:bg-gray-100 dark:border-white/20 dark:hover:border-white dark:text-white dark:hover:bg-white/5"
+                        ? "bg-[#f04e23] hover:bg-[#d84018] text-white font-bold"
+                        : "border border-gray-300 hover:border-gray-900 text-gray-900 hover:bg-gray-100 dark:border-white/20 dark:hover:border-white dark:text-white dark:hover:bg-white/5"
                         }`}
                       onClick={() => {
                         setCalcPlanIndex(index);
@@ -402,8 +400,8 @@ export default function HomePage() {
                             }
                           }}
                           className={`p-3 text-xs font-mono uppercase tracking-wider text-left border transition-colors ${calcPlanIndex === idx
-                              ? "bg-[#f04e23] border-[#f04e23] text-white font-bold"
-                              : "bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400 dark:bg-[#121825] dark:border-white/10 dark:hover:border-white/30 dark:text-gray-300"
+                            ? "bg-[#f04e23] border-[#f04e23] text-white font-bold"
+                            : "bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400 dark:bg-[#121825] dark:border-white/10 dark:hover:border-white/30 dark:text-gray-300"
                             }`}
                         >
                           {p.name}

@@ -1704,7 +1704,20 @@ JOIN assets a ON a.symbol = w.sym
 ON CONFLICT DO NOTHING;
 
 -- =========================================================
--- 8. SCHEMA GRANTS
+-- 8. BANK WITHDRAWAL COLUMNS (from 024)
+-- =========================================================
+ALTER TABLE public.transactions
+  ADD COLUMN IF NOT EXISTS withdrawal_method TEXT DEFAULT 'crypto',
+  ADD COLUMN IF NOT EXISTS bank_name TEXT,
+  ADD COLUMN IF NOT EXISTS account_holder_name TEXT,
+  ADD COLUMN IF NOT EXISTS account_number TEXT,
+  ADD COLUMN IF NOT EXISTS routing_number TEXT,
+  ADD COLUMN IF NOT EXISTS swift_code TEXT,
+  ADD COLUMN IF NOT EXISTS bank_country TEXT,
+  ADD COLUMN IF NOT EXISTS account_type TEXT;
+
+-- =========================================================
+-- 9. SCHEMA GRANTS
 -- =========================================================
 GRANT USAGE ON SCHEMA public TO postgres, anon, authenticated, service_role;
 GRANT ALL ON ALL TABLES IN SCHEMA public TO postgres, service_role;
