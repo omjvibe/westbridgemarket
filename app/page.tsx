@@ -63,10 +63,6 @@ export default function HomePage() {
             alt="Westbridge Market Skyscraper Financial Architecture"
             className="w-full h-full object-cover object-center"
           />
-          {/* Light & Dark Architectural Overlays */}
-          <div className="absolute inset-0 bg-white/70 dark:bg-[#090d14]/70" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent dark:from-[#090d14]/90 dark:via-[#090d14]/60 dark:to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-[#090d14] dark:via-transparent dark:to-transparent" />
         </div>
 
         {/* Left Vertical Architectural Rail */}
@@ -100,10 +96,10 @@ export default function HomePage() {
           {/* Section 01 Crosshair Marker */}
           <ScrollReveal animation="slide-up" delay={50} duration={600}>
             <div className="relative inline-flex items-center mb-6">
-              {/* <span className="font-mono text-3xl sm:text-4xl md:text-5xl font-light text-gray-950 dark:text-white tracking-widest">
+              <span className="font-mono text-3xl sm:text-4xl md:text-5xl font-light text-gray-950 dark:text-white tracking-widest relative z-10 px-2 bg-white/60 dark:bg-black/40 backdrop-blur-none">
                 01
-              </span> */}
-              <div className="absolute inset-y-1/2 -left-4 -right-4 h-[1px] bg-gray-400 dark:bg-white/40" />
+              </span>
+              <div className="absolute inset-y-1/2 -left-4 -right-4 h-[1px] bg-gray-400 dark:bg-white/40 z-0" />
             </div>
           </ScrollReveal>
 

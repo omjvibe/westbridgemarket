@@ -81,48 +81,47 @@ export function Navbar() {
           })}
         </div>
 
-        {/* Desktop Actions */}
-        <div className="hidden items-center gap-3 md:flex">
+        {/* Actions (Language Selector, Theme Toggle, Auth, Mobile Menu) */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Google Translate dropdown fixed in navbar */}
+          <div className="gtranslate_wrapper" />
+
+          {/* Theme Toggle */}
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             className="h-8 w-8 text-gray-600 hover:text-gray-950 hover:bg-black/5 dark:text-gray-400 dark:hover:text-white dark:hover:bg-white/5 rounded-none"
+            aria-label="Toggle theme"
           >
             <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
             <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           </Button>
-          <Button
-            variant="ghost"
-            className="h-9 px-4 text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-gray-950 hover:bg-black/5 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5 rounded-none"
-            asChild
-          >
-            <Link href="/auth/login">Sign In</Link>
-          </Button>
-          <Button
-            className="h-9 px-5 text-xs font-bold uppercase tracking-wider bg-[#f04e23] hover:bg-[#d84018] text-white rounded-none shadow-none"
-            asChild
-          >
-            <Link href="/auth/signup">Get Started</Link>
-          </Button>
-        </div>
 
-        {/* Mobile Menu Button */}
-        <div className="flex items-center gap-2 md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="h-9 w-9 text-gray-700 dark:text-gray-300"
-          >
-            <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          </Button>
+          {/* Desktop Auth Buttons */}
+          <div className="hidden md:flex items-center gap-2 lg:gap-3">
+            <Button
+              variant="ghost"
+              className="h-9 px-4 text-xs font-semibold uppercase tracking-wider text-gray-700 hover:text-gray-950 hover:bg-black/5 dark:text-gray-300 dark:hover:text-white dark:hover:bg-white/5 rounded-none"
+              asChild
+            >
+              <Link href="/auth/login">Sign In</Link>
+            </Button>
+            <Button
+              className="h-9 px-5 text-xs font-bold uppercase tracking-wider bg-[#f04e23] hover:bg-[#d84018] text-white rounded-none shadow-none"
+              asChild
+            >
+              <Link href="/auth/signup">Get Started</Link>
+            </Button>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-gray-700 dark:text-gray-300"
+            className="text-gray-700 dark:text-gray-300 md:hidden"
+            aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>

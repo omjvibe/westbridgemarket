@@ -130,3 +130,91 @@
 .font-editorial {
   font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
 }
+
+/* ========================================================= */
+/* Google Translate Navbar Dropdown Architectural Styling     */
+/* ========================================================= */
+.gtranslate_wrapper {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  z-index: 40;
+}
+
+.gtranslate_wrapper select,
+.gtranslate_wrapper .gt_selector {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 32px;
+  padding: 0 22px 0 9px;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  background-size: 11px;
+  border: 1px solid rgba(156, 163, 175, 0.4);
+  border-radius: 0px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1f2937;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+  outline: none;
+}
+
+.dark .gtranslate_wrapper select,
+.dark .gtranslate_wrapper .gt_selector {
+  color: #f3f4f6;
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: #0c1017;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+}
+
+.gtranslate_wrapper select:hover,
+.gtranslate_wrapper .gt_selector:hover {
+  border-color: #f04e23;
+}
+
+.gtranslate_wrapper select:focus,
+.gtranslate_wrapper .gt_selector:focus {
+  border-color: #f04e23;
+  outline: none;
+}
+
+.gtranslate_wrapper select option,
+.gtranslate_wrapper .gt_selector option {
+  background-color: #ffffff;
+  color: #111827;
+  font-size: 12px;
+  font-family: inherit;
+  padding: 6px;
+}
+
+.dark .gtranslate_wrapper select option,
+.dark .gtranslate_wrapper .gt_selector option {
+  background-color: #0c1017;
+  color: #f3f4f6;
+}
+
+/* Prevent Google Translate banner from shifting page layout */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+.goog-te-banner-frame,
+iframe.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+}
