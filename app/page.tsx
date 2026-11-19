@@ -61,12 +61,12 @@ export default function HomePage() {
           <img
             src="https://images.unsplash.com/photo-1453284441168-8780c9f52097?q=80&w=2000&auto=format&fit=crop"
             alt="Westbridge Market Skyscraper Financial Architecture"
-            className="w-full h-full object-cover object-center filter brightness-[0.9] dark:brightness-[0.6] contrast-[1.15]"
+            className="w-full h-full object-cover object-center"
           />
           {/* Light & Dark Architectural Overlays */}
-          <div className="absolute inset-0 bg-white/80 dark:bg-[#090d14]/75 dark:mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/85 to-white/60 dark:from-[#090d14]/95 dark:via-[#090d14]/60 dark:to-[#090d14]/85" />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-white/30 dark:from-[#090d14] dark:via-transparent dark:to-[#090d14]/40" />
+          <div className="absolute inset-0 bg-white/70 dark:bg-[#090d14]/70" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-transparent dark:from-[#090d14]/90 dark:via-[#090d14]/60 dark:to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-[#090d14] dark:via-transparent dark:to-transparent" />
         </div>
 
         {/* Left Vertical Architectural Rail */}
@@ -100,9 +100,9 @@ export default function HomePage() {
           {/* Section 01 Crosshair Marker */}
           <ScrollReveal animation="slide-up" delay={50} duration={600}>
             <div className="relative inline-flex items-center mb-6">
-              <span className="font-mono text-3xl sm:text-4xl md:text-5xl font-light text-gray-950 dark:text-white tracking-widest">
+              {/* <span className="font-mono text-3xl sm:text-4xl md:text-5xl font-light text-gray-950 dark:text-white tracking-widest">
                 01
-              </span>
+              </span> */}
               <div className="absolute inset-y-1/2 -left-4 -right-4 h-[1px] bg-gray-400 dark:bg-white/40" />
             </div>
           </ScrollReveal>
@@ -297,11 +297,10 @@ export default function HomePage() {
               return (
                 <ScrollReveal key={index} animation="slide-up" delay={index * 100}>
                   <div
-                    className={`relative flex flex-col justify-between p-6 border transition-all ${
-                      isFeatured
+                    className={`relative flex flex-col justify-between p-6 border transition-all ${isFeatured
                         ? "border-[#f04e23] bg-orange-50/30 dark:bg-[#121825]"
                         : "border-gray-200 bg-white hover:border-gray-400 dark:border-white/10 dark:bg-[#0e131d] dark:hover:border-white/30"
-                    }`}
+                      }`}
                   >
                     {isFeatured && (
                       <div className="absolute top-0 right-0 bg-[#f04e23] text-white text-[9px] font-mono font-bold uppercase tracking-widest py-1 px-3">
@@ -357,11 +356,10 @@ export default function HomePage() {
 
                     <button
                       type="button"
-                      className={`w-full py-3 text-xs font-mono uppercase tracking-wider transition-colors ${
-                        isFeatured
+                      className={`w-full py-3 text-xs font-mono uppercase tracking-wider transition-colors ${isFeatured
                           ? "bg-[#f04e23] hover:bg-[#d84018] text-white font-bold"
                           : "border border-gray-300 hover:border-gray-900 text-gray-900 hover:bg-gray-100 dark:border-white/20 dark:hover:border-white dark:text-white dark:hover:bg-white/5"
-                      }`}
+                        }`}
                       onClick={() => {
                         setCalcPlanIndex(index);
                         setCalcAmount(plan.min);
@@ -407,11 +405,10 @@ export default function HomePage() {
                               setCalcAmount(p.min);
                             }
                           }}
-                          className={`p-3 text-xs font-mono uppercase tracking-wider text-left border transition-colors ${
-                            calcPlanIndex === idx
+                          className={`p-3 text-xs font-mono uppercase tracking-wider text-left border transition-colors ${calcPlanIndex === idx
                               ? "bg-[#f04e23] border-[#f04e23] text-white font-bold"
                               : "bg-gray-50 border-gray-200 text-gray-700 hover:border-gray-400 dark:bg-[#121825] dark:border-white/10 dark:hover:border-white/30 dark:text-gray-300"
-                          }`}
+                            }`}
                         >
                           {p.name}
                         </button>
